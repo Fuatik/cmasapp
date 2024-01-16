@@ -1,4 +1,4 @@
-### Voting system for restaurants REST API (without frontend)
+### System for management entity USER with REST API (without frontend) for CMAS
 
 **The task was:**
 Create a Web Application with a REST API to manage the entity User. You must provide all the CRUD
