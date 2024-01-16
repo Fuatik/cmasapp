@@ -72,7 +72,7 @@ class UserServiceTest {
 
     @Test
     void findUserById() {
-        BDDMockito.given(repository.findById(USER_ID)).willReturn(Optional.of(createUserEntity(USER_1)));
+        BDDMockito.given(repository.findById(USER_ID)).willReturn(Optional.of(createUserEntity()));
 
         UserDto userDto = service.findUserById(USER_ID);
 
@@ -81,7 +81,7 @@ class UserServiceTest {
 
     @Test
     void updateUser() {
-        BDDMockito.when(repository.findById(USER_ID)).thenReturn(Optional.of(createUserEntity(USER_1)));
+        BDDMockito.when(repository.findById(USER_ID)).thenReturn(Optional.of(createUserEntity()));
 
         UserDto updateedUserDto = new UserDto(USER_ID,
                 "Updated Mark",
@@ -97,20 +97,20 @@ class UserServiceTest {
 
     @Test
     void deleteUserById() {
-        BDDMockito.when(repository.findById(USER_ID)).thenReturn(Optional.of(createUserEntity(USER_1)));
+        BDDMockito.when(repository.findById(USER_ID)).thenReturn(Optional.of(createUserEntity()));
 
         service.deleteUserById(USER_ID);
 
         verify(repository).deleteById(eq(USER_ID));
     }
 
-    private UserEntity createUserEntity(UserEntity user) {
+    private UserEntity createUserEntity() {
         return new UserEntity(
-                user.getId(),
-                user.getFirstName(),
-                user.getLastName(),
-                user.getEmail(),
-                user.getAge(),
-                user.isActive());
+                UserServiceTest.USER_1.getId(),
+                UserServiceTest.USER_1.getFirstName(),
+                UserServiceTest.USER_1.getLastName(),
+                UserServiceTest.USER_1.getEmail(),
+                UserServiceTest.USER_1.getAge(),
+                UserServiceTest.USER_1.isActive());
     }
 }
